@@ -1,82 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project basedir="./" default="compile" name="MIIUtils">
+<project basedir="./" default="compile" name="java-cobol">
     
     <property file="${basedir}/build.properties"/>
     
     <!--  ***** these are the properties calling ants need to override **** -->
-    <property name="aoc.source.dir" value="JavaSource"/>
-    <property name="aoc.web" value="WebContent"/>
-    <property name="aoc.class.dir" value="bin"/>
-    <property name="aoc.lib.dir" value="lib"/>
-	<property name="aoc.log.dir" value="logs"/>
-	<property name="aoc.dist.dir" value="dist"/>
-	
-	<property name="global.was.dir" value="C:/Program Files/IBM/WebSphere Studio/runtimes/base_v51"/>
-    
-    <property name="aoc.common.base" value="../Common2_x"/>
-    <!-- property name="aoc.common.base" value="C:/wsad/workspace/Common"/ -->
-    <property name="aoc.common.classes" value="${aoc.common.base}/${aoc.web}/WEB-INF/classes"/>
-    <property name="aoc.common.lib" value="${aoc.common.base}/${aoc.web}/WEB-INF/lib"/>
-    
-    <property name="db2.lib" value="C:/Program Files/IBM/SQLLIB/java" />
+    <property name="jce.source.dir" value="JavaSource"/>
+    <property name="jce.class.dir" value="bin"/>
+    <property name="jce.lib.dir" value="lib"/>
+	<property name="jce.log.dir" value="logs"/>
+	<property name="jce.dist.dir" value="dist"/>
 	
 	<!-- define classpath's -->
-    <path id="aoc.base.path">
-		<fileset dir="${basedir}/${aoc.lib.dir}">
+    <path id="jce.base.path">
+		<fileset dir="${basedir}/${jce.lib.dir}">
 			<include name="*.jar"/>
 			<include name="*.zip"/>
 		</fileset>
     </path>
     
     <path id="compile.path">
-		<pathelement location="${global.was.dir}/lib/j2ee.jar"/>
-		<path refid="aoc.base.path"/>
-        <pathelement location="${aoc.common.classes}"/>
-    </path>
-    
-    <path id="compile.common.path">
-		<pathelement location="${global.was.dir}/lib/j2ee.jar"/>
-		<pathelement location="${aoc.common.classes}"/>
-		<fileset dir="${aoc.common.lib}">
-			<include name="*.jar"/>
-			<include name="*.zip"/>
-		</fileset>
+		<path refid="jce.base.path"/>
     </path>
     
     <path id="runtime.path">
-		<pathelement location="${global.was.dir}/lib/j2ee.jar"/>
-		<path refid="aoc.base.path"/>
-        <pathelement location="${basedir}/${aoc.dist.dir}/common.jar"/>
-        <pathelement location="${db2.lib}/db2java.zip"/>
+		<path refid="jce.base.path"/>
     </path>
     
     <!-- initialization -->
     <target name="init">
-    	<!-- pathconvert targetos="windows"  pathsep="," property="aoc.xx" refid="compile.path"/>
-    	<echo message="compile path: ${aoc.xx}"/ -->
     	<!-- Create the time stamp -->
     	<tstamp>
     		<format property="file.time" pattern="yyyyMMdd_HHmmss"/>
     		<format property="display.time" pattern="yyyy-MM-dd hh:mm:ss a"/>
     	</tstamp>
-    	<mkdir dir="${basedir}/${aoc.log.dir}"/>
+    	<mkdir dir="${basedir}/${jce.log.dir}"/>
 		<echo message="Starting Time: ${display.time}" />
     </target>
     
     <!-- cleanup compile output folder --> 
     <target name="cleanForCompile" >
-        <delete dir="${basedir}/${aoc.class.dir}" failonerror="false" />
+        <delete dir="${basedir}/${jce.class.dir}" failonerror="false" />
     </target>
     
     <!-- compile --> 
     <target name="compile" depends="init" >
         <echo message="base directory is ${basedir}" />
-        <echo message="compiling from directory ${aoc.source.dir}" />
+        <echo message="compiling from directory ${jce.source.dir}" />
         
-    	<mkdir dir="${basedir}/${aoc.class.dir}"/>
+    	<mkdir dir="${basedir}/${jce.class.dir}"/>
         <javac deprecation="true"  failonerror="false"
-            destdir="${basedir}/${aoc.class.dir}" 
-            srcdir="${aoc.source.dir}" debug="on"
+            destdir="${basedir}/${jce.class.dir}" 
+            srcdir="${jce.source.dir}" debug="on"
             verbose="true">
             <classpath refid="compile.path"/>
         </javac>
@@ -84,9 +58,9 @@
     
     <!-- copy xml and properties files to classes folder -->
 	<target name="postCompileProcessing" depends="compile">
-		<echo message="copy xml/properties files to ${aoc.class.dir} directory" />
-		<copy todir="${basedir}/${aoc.class.dir}" preservelastmodified="true" verbose="true">
-			<fileset dir="${basedir}/${aoc.source.dir}">
+		<echo message="copy xml/properties files to ${jce.class.dir} directory" />
+		<copy todir="${basedir}/${jce.class.dir}" preservelastmodified="true" verbose="true">
+			<fileset dir="${basedir}/${jce.source.dir}">
 				<include name="**/*.xml"/>
 				<exclude name="**/*.properties"/>
 			</fileset>
@@ -95,18 +69,18 @@
 	
     <!-- build jar files -->
     <target name="build" depends="postCompileProcessing, increaseBuildNumber" >
-    	<mkdir dir="${basedir}/${aoc.dist.dir}"/>
-        <jar destfile="${basedir}/${aoc.dist.dir}/${aoc.app}.jar"
-            basedir="${basedir}/${aoc.class.dir}"
+    	<mkdir dir="${basedir}/${jce.dist.dir}"/>
+        <jar destfile="${basedir}/${jce.dist.dir}/${jce.app}.jar"
+            basedir="${basedir}/${jce.class.dir}"
             >
 	        <manifest>
-				<attribute name="Built-By" value="Aoc Interface and Integration"/>
+				<attribute name="Built-By" value="blog.javaclue"/>
 			</manifest>
         </jar>
     </target>
     
 	<target name="increaseBuildNumber">
-		<propertyfile file="${basedir}/${aoc.source.dir}/buildnumber.properties" comment="build number file">
+		<propertyfile file="${basedir}/${jce.source.dir}/buildnumber.properties" comment="build number file">
 		  <entry  key="sequence.number" type="int" default="0" operation="+"/>
 		  <entry  key="build.number" type="int" default="0050" operation="+" pattern="0000"/>
 		</propertyfile>
@@ -119,7 +93,7 @@
     
     <!-- cleanup --> 
     <target name="clean" depends="cleanForCompile">
-       <delete dir="${basedir}/${aoc.dist.dir}" failonerror="false" />
+       <delete dir="${basedir}/${jce.dist.dir}" failonerror="false" />
     </target>
     
 </project>
