@@ -1,3 +1,19 @@
+/*
+ * blog/javaclue/jcexchanger/BaseElement.java
+ * 
+ * Copyright (C) 2010 JackW
+ * 
+ * This program is free software: you can redistribute it and/or modify it under the terms of the
+ * GNU Lesser General Public License as published by the Free Software Foundation, either version 3
+ * of the License, or (at your option) any later version.
+ * 
+ * This library is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
+ * even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Lesser General Public License along with this library.
+ * If not, see <http://www.gnu.org/licenses/>.
+ */
 package blog.javaclue.jcexchanger;
 
 import java.io.ByteArrayInputStream;
@@ -46,7 +62,7 @@ public abstract class BaseElement implements java.io.Serializable, Cloneable {
 			throw new IllegalArgumentException("Invalid Length: " + length);
 		}
 		this.name = name;
-		this.length = isNullable ? (length + 1) : length;
+		this.length = (isNullable && AppProperties.useNullIndicator()) ? (length + 1) : length;
 		this.isNullable = isNullable;
 	}
 
@@ -57,8 +73,12 @@ public abstract class BaseElement implements java.io.Serializable, Cloneable {
 	public abstract Object getValue();
 
 	public void setValue(String value) {
-		if (value == null) setValue(getLowValues());
-		else setValue(value.getBytes());
+		if (value == null) {
+			setValue(getLowValues(length));
+		}
+		else {
+			setValue(value.getBytes());
+		}
 	}
 
 	public void readBytesToValue(ByteArrayInputStream bais) {
@@ -74,15 +94,23 @@ public abstract class BaseElement implements java.io.Serializable, Cloneable {
 
 	protected final boolean isLowValue(byte[] bytes) {
 		for (int i = 0; i < bytes.length; i++) {
-			if (bytes[i] != 0)
+			if (bytes[i] != 0x00)
 				return false;
 		}
 		return true;
 	}
-	
-	protected final byte[] getLowValues() {
-		byte[] bytes = new byte[length];
-		for (int i = 0; i < length; i++) {
+
+	protected final boolean isHighValue(byte[] bytes) {
+		for (int i = 0; i < bytes.length; i++) {
+			if (bytes[i] != 0xFF)
+				return false;
+		}
+		return true;
+	}
+
+	protected final byte[] getLowValues(int len) {
+		byte[] bytes = new byte[len];
+		for (int i = 0; i < len; i++) {
 			bytes[i] = 0;
 		}
 		return bytes;

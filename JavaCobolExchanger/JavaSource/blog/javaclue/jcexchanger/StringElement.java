@@ -1,3 +1,19 @@
+/*
+ * blog/javaclue/jcexchanger/StringElement.java
+ * 
+ * Copyright (C) 2010 JackW
+ * 
+ * This program is free software: you can redistribute it and/or modify it under the terms of the
+ * GNU Lesser General Public License as published by the Free Software Foundation, either version 3
+ * of the License, or (at your option) any later version.
+ * 
+ * This library is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
+ * even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Lesser General Public License along with this library.
+ * If not, see <http://www.gnu.org/licenses/>.
+ */
 package blog.javaclue.jcexchanger;
 
 import org.apache.commons.lang.StringUtils;
@@ -57,11 +73,29 @@ public class StringElement extends BaseElement {
 	}
 
 	public String getFormattedString() {
-		if (value==null) {
-			return getBlanks(length);
+		return new String(getFormattedBytes());
+	}
+
+	public byte[] getFormattedBytes() {
+		if (value == null) {
+			if (isNullable) {
+				if (AppProperties.useNullIndicator()) {
+					return ("Y" + getBlanks(length - 1)).getBytes();
+				}
+				else {
+					return getLowValues(length);
+				}
+			}
+			else {
+				return getBlanks(length).getBytes();
+			}
 		}
 		else {
-			return StringUtils.rightPad(StringUtils.left(toString(), length), length, ' ');
+			String rtn_str = toString();
+			if (isNullable && AppProperties.useNullIndicator()) {
+				rtn_str = "N" + rtn_str;
+			}
+			return StringUtils.rightPad(StringUtils.left(rtn_str, length), length, ' ').getBytes();
 		}
 	}
 
@@ -81,24 +115,30 @@ public class StringElement extends BaseElement {
 	/*
 	 * @param byte array
 	 */
-	void setValue(byte[] bytes) {
+	public void setValue(byte[] bytes) {
 		if (isLowValue(bytes)) {
 			value = null;
 		}
 		else {
 			String field = new String(bytes);
-			if (isNullable && field.length()>0) {
-				if ("Y".equalsIgnoreCase(field.substring(0,1))) {
-					value = null;
+			if (isNullable && field.length() > 0) {
+				if (AppProperties.useNullIndicator()) { // use null indicator
+					if ("Y".equalsIgnoreCase(field.substring(0,1))) {
+						value = null;
+					}
+					else {
+						value = field.substring(1);
+					}
 				}
 				else {
-					value = field.substring(1);
-					if (trim) value = value.trim();
+					value = field;
 				}
 			}
 			else {
 				value = field;
-				if (trim) value = value.trim();
+			}
+			if (trim == true && value != null) {
+				value = value.trim();
 			}
 		}
 		if (value != null && value.length() > length) {
@@ -111,8 +151,16 @@ public class StringElement extends BaseElement {
 		StringElement elem = new StringElement("string", 25);
 		byte[] bytes = {0,0,0,0,0,0,0,0};
 		elem.setValue(bytes);
-		System.out.println(elem.isLowValue(bytes) + ", value: " + elem);
+		System.out.println("LowValue? " + elem.isLowValue(bytes) + ", value: " + elem);
 		elem.setValue("I'm a String Element");
+		System.out.println(elem.getName() + ".toString() :<" + elem + ">");
+		System.out.println(elem.getName() + ".formatted  :<" + elem.getFormattedString() + ">");
+		// test null string
+		elem = new StringElement("string", 25, true);
+		bytes = "Y              ".getBytes();
+		elem.setValue(bytes);
+		System.out.println("LowValue? " + elem.isLowValue(bytes) + ", value: " + elem);
+		elem.setValue("NI'm a String Element");
 		System.out.println(elem.getName() + ".toString() :<" + elem + ">");
 		System.out.println(elem.getName() + ".formatted  :<" + elem.getFormattedString() + ">");
 	}

@@ -1,3 +1,19 @@
+/*
+ * blog/javaclue/jcexchanger/sample/JMSMessageRecord.java
+ * 
+ * Copyright (C) 2010 JackW
+ * 
+ * This program is free software: you can redistribute it and/or modify it under the terms of the
+ * GNU Lesser General Public License as published by the Free Software Foundation, either version 3
+ * of the License, or (at your option) any later version.
+ * 
+ * This library is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
+ * even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Lesser General Public License along with this library.
+ * If not, see <http://www.gnu.org/licenses/>.
+ */
 package blog.javaclue.jcexchanger.sample;
 
 import blog.javaclue.jcexchanger.BooleanElement;
@@ -79,7 +95,7 @@ public class JMSMessageRecord extends ExchangeRecord {
 		trailer.getElement("dateTime").setValue("20100405 20:45:12.234");
 
 		// create an exchange record
-		JMSMessageRecord msg = new JMSMessageRecord(header, new Trailer());
+		JMSMessageRecord msg = new JMSMessageRecord(header, trailer);
 
 		// load the exchange record with data
 		msg.getElement("countryCode").setValue("USA");
