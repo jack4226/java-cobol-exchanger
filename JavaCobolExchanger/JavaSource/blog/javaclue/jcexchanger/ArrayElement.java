@@ -26,7 +26,6 @@ import java.util.Iterator;
  */
 public class ArrayElement extends BaseGroupElement {
 	private static final long serialVersionUID = 4915172611617124583L;
-	static final String LF = System.getProperty("line.separator", "\n");
 
 	private ArrayList<BaseElement> value;
 

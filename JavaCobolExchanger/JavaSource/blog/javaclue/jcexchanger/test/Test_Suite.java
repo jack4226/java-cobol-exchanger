@@ -27,7 +27,9 @@ import org.junit.runners.Suite;
 				DecimalElementTest.class,
 				IntegerElementTest.class,
 				StringElementTest.class,
-				StructElementTest.class})
+				StructElementTest.class,
+				SimpleCopybookTest.class,
+				ComplexCopybookTest.class})
 public class Test_Suite {
 	// empty body
 }

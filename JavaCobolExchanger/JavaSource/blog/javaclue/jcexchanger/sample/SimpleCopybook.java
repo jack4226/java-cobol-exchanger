@@ -48,20 +48,24 @@ public class SimpleCopybook extends ExchangeRecord {
 		list.add(new StringElement("filler",3));
 	}
 	
+	public void initialize() {
+		// load the exchange record with data
+		this.getElement("type").setValue("ADD");
+		((BooleanElement)this.getElement("flag")).setValue(Boolean.valueOf(true));
+		this.getElement("countryCode").setValue("USA");
+		this.getElement("sequence").setValue("123");
+		this.getElement("amount").setValue("199.99");
+		this.getElement("beginDate").setValue("2010-01-01");
+		this.getElement("updateDateTime").setValue("20100405 20:45:12.234");
+	}
+	
 	/*
 	 * starts from java exchange record and export it to COBOL string
 	 */
 	void javaToCobol() {
 		// create an exchange record
-		ExchangeRecord bean = new SimpleCopybook();
-		// load the exchange record with data
-		bean.getElement("type").setValue("ADD");
-		((BooleanElement)bean.getElement("flag")).setValue(Boolean.valueOf(true));
-		bean.getElement("countryCode").setValue("USA");
-		bean.getElement("sequence").setValue("123");
-		bean.getElement("amount").setValue("199.99");
-		bean.getElement("beginDate").setValue("2010-01-01");
-		bean.getElement("updateDateTime").setValue("20100405 20:45:12.234");
+		SimpleCopybook bean = new SimpleCopybook();
+		bean.initialize();
 		// print out the exchange record
 		System.out.println("SimpleCopybook:" + LF + bean);
 		System.out.println("Size  : " + bean.size());

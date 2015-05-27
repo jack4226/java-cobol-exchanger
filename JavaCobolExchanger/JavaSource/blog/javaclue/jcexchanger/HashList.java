@@ -21,18 +21,19 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 public class HashList {
 	
-	private final HashMap<String, Object> map;
-	private final ArrayList<BaseElement> list;
+	private final Map<String, Integer> map;
+	private final List<BaseElement> list;
 	protected final String LF = System.getProperty("line.separator", "\n");
 	
 	/**
 	 * constructor
 	 */
 	public HashList() {
-		map = new HashMap<String, Object>();
+		map = new HashMap<String, Integer>();
 		list = new ArrayList<BaseElement>();
 	}
 	
@@ -51,10 +52,10 @@ public class HashList {
 	 * @return an element or null if not found
 	 */
 	public BaseElement get(String elementName) {
-		Object obj = map.get(elementName);
+		Integer obj = map.get(elementName);
 		if (obj!=null) {
-			int idx = ((Integer)obj).intValue();
-			return (BaseElement)list.get(idx-1);
+			int idx = obj.intValue();
+			return list.get(idx-1);
 		}
 		return null;
 	}
@@ -66,7 +67,7 @@ public class HashList {
 	public List<String> getNames() {
 		List<String> names = new ArrayList<String>();
 		for (Iterator<BaseElement> it=list.iterator(); it.hasNext();) {
-			BaseElement element = (BaseElement)it.next();
+			BaseElement element = it.next();
 			names.add(element.getName());
 		}
 		return names;
@@ -95,7 +96,7 @@ public class HashList {
 	public int length() {
 		int len = 0;
 		for (Iterator<BaseElement> it=list.iterator(); it.hasNext();) {
-			BaseElement element = (BaseElement)it.next();
+			BaseElement element = it.next();
 			len += element.length();
 		}
 		return len;
@@ -112,7 +113,7 @@ public class HashList {
 		StringBuffer sb = new StringBuffer();
 		sb.append("This record contains " + list.size() + " elements, length = " + length() + LF);
 		for (Iterator<BaseElement> it=list.iterator(); it.hasNext();) {
-			BaseElement element = (BaseElement)it.next();
+			BaseElement element = it.next();
 			sb.append(String.format("%-16s", element.getName()) + ": ");
 			if (element instanceof BaseGroupElement) {
 				sb.append("["+((BaseGroupElement)element).toString(level + 1)+"]"+LF);

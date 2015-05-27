@@ -24,7 +24,7 @@ public abstract class ExchangeRecord {
 	protected final HashList list = new HashList();
 	private ExchangeRecord header = null;
 	private ExchangeRecord trailer = null;
-	protected final String LF = System.getProperty("line.separator", "\n");
+	protected static final String LF = System.getProperty("line.separator", "\n");
 	
 	public void importFromBytes(byte[] record) {
 		int offset = 0;

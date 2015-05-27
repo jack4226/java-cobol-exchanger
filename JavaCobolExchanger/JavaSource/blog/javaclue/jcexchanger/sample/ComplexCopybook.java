@@ -56,30 +56,34 @@ public class ComplexCopybook extends ExchangeRecord {
 		list.add(new StringElement("filler", 3));
 	}
 	
+	public void initialize() {
+		// load the exchange record with data
+		this.getElement("type").setValue("ADD");
+		this.getElement("flag").setValue("Y");
+		this.getElement("countryCode").setValue("USA");
+		this.getElement("sequence").setValue("123");
+		this.getElement("amount").setValue("199.99");
+		this.getElement("beginDate").setValue("2010-01-01");
+		this.getElement("updateDateTime").setValue("20100405 20:45:12.234");
+		StructElement struct = (StructElement) this.getElement("struct");
+		struct.getElement("int-signed").setValue("-999");
+		struct.getElement("long20").setValue("12345678901234567890");
+		struct.getElement("decimal-signed").setValue("-1234.5678");
+		struct.getElement("decimal-cobol").setValue("12345.78");
+		struct.getElement("boolean").setValue("Yes");
+		ArrayElement array = (ArrayElement) this.getElement("array");
+		for (int i = 1; i <= array.size(); i++) {
+			array.get(i - 1).setValue(i + "" + i + "" + i);
+		}
+	}
+	
 	/*
 	 * starts from java exchange record and export it to COBOL string
 	 */
 	void javaToCobol() {
 		// create an exchange record
 		ExchangeRecord bean = new ComplexCopybook();
-		// load the exchange record with data
-		bean.getElement("type").setValue("ADD");
-		bean.getElement("flag").setValue("Y");
-		bean.getElement("countryCode").setValue("USA");
-		bean.getElement("sequence").setValue("123");
-		bean.getElement("amount").setValue("199.99");
-		bean.getElement("beginDate").setValue("2010-01-01");
-		bean.getElement("updateDateTime").setValue("20100405 20:45:12.234");
-		StructElement struct = (StructElement) bean.getElement("struct");
-		struct.getElement("int-signed").setValue("-999");
-		struct.getElement("long20").setValue("12345678901234567890");
-		struct.getElement("decimal-signed").setValue("-1234.5678");
-		struct.getElement("decimal-cobol").setValue("12345.78");
-		struct.getElement("boolean").setValue("Yes");
-		ArrayElement array = (ArrayElement) bean.getElement("array");
-		for (int i = 1; i <= array.size(); i++) {
-			array.get(i - 1).setValue(i + "" + i + "" + i);
-		}
+		initialize();
 		System.out.println("ComplexCopybook:" + LF + bean);
 		System.out.println("Size  : " + bean.size());
 		System.out.println("Length: " + bean.length());

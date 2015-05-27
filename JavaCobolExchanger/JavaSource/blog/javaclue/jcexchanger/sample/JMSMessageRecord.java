@@ -29,8 +29,6 @@ import blog.javaclue.jcexchanger.StringElement;
  */
 public class JMSMessageRecord extends ExchangeRecord {
 	
-	static final String LF = System.getProperty("line.separator", "\n");
-	
 	/**
 	 * defines the JMS message layout.
 	 * 
@@ -70,33 +68,38 @@ public class JMSMessageRecord extends ExchangeRecord {
 		}
 	}
 
+	public void initialize() {
+		// load header with data
+		ExchangeRecord header = this.getHeader();
+		if (header != null) {
+			header.getElement("type").setValue("ADD");
+			header.getElement("application").setValue("SampleJMSApp");
+		}
+		// load trailer with data
+		ExchangeRecord trailer = this.getTrailer();
+		if (trailer != null) {
+			trailer.getElement("flag").setValue("Y");
+			trailer.getElement("dateTime").setValue("20100405 20:45:12.234");
+		}
+		
+		// load the exchange record with data
+		this.getElement("countryCode").setValue("USA");
+		this.getElement("sequence").setValue("123");
+		this.getElement("amount").setValue("199.99");
+		this.getElement("beginDate").setValue("2010-01-01");
+	}
+
 	/*
 	 * starts from java exchange record and export it to COBOL string
 	 */
-	static void javaToCobol() {
-		// create a header
-		Header header = new Header();
-		header.getElement("type").setValue("ADD");
-		header.getElement("application").setValue("SampleJMSApp");
-		// create a trailer
-		Trailer trailer = new Trailer();
-		trailer.getElement("flag").setValue("Y");
-		trailer.getElement("dateTime").setValue("20100405 20:45:12.234");
-
-		// create an exchange record
-		JMSMessageRecord msg = new JMSMessageRecord(header, trailer);
-
-		// load the exchange record with data
-		msg.getElement("countryCode").setValue("USA");
-		msg.getElement("sequence").setValue("123");
-		msg.getElement("amount").setValue("199.99");
-		msg.getElement("beginDate").setValue("2010-01-01");
-		System.out.println("JMSMessageRecord:" + LF + msg);
-		System.out.println("Size  : " + msg.size());
-		System.out.println("Length: " + msg.length());
+	void javaToCobol() {
+		initialize();
+		System.out.println("JMSMessageRecord:" + LF + this);
+		System.out.println("Size  : " + this.size());
+		System.out.println("Length: " + this.length());
 
 		// export the exchange record to a COBOL text string
-		String cobolString = msg.exportToString();
+		String cobolString = this.exportToString();
 		System.out.println("bean1 - [" + cobolString + "]");
 
 		// add your code here to send it to a mainframe queue
@@ -105,25 +108,24 @@ public class JMSMessageRecord extends ExchangeRecord {
 	/*
 	 * starts from COBOL string and import it to java exchange record.
 	 */
-	static void cobolToJava() {
+	void cobolToJava() {
 		// message text returned from a mainframe queue:
 		String record = "ADDSampleJMSApp      USA00012300199.992010-01-01   Y20100405 20:45:12.234";
-		// create an exchange record
-		JMSMessageRecord bean = new JMSMessageRecord(new Header(), new Trailer());
 		// import the message text to the exchange record
-		bean.importFromString(record);
+		this.importFromString(record);
 		// print out the exchange record
-		System.out.println("JMSMessageRecord:" + LF + bean);
-		System.out.println("Size  : " + bean.size());
-		System.out.println("Length: " + bean.length());
-		System.out.println("bean2 - [" + bean.exportToString() + "]");
+		System.out.println("JMSMessageRecord:" + LF + this);
+		System.out.println("Size  : " + this.size());
+		System.out.println("Length: " + this.length());
+		System.out.println("bean2 - [" + this.exportToString() + "]");
 	}
 	
 	public static void main(String[] args) {
+		JMSMessageRecord test = new JMSMessageRecord(new Header(), new Trailer());
 		try {
-			javaToCobol();
+			test.javaToCobol();
 			System.out.println(LF);
-			cobolToJava();
+			test.cobolToJava();
 		}
 		catch (Exception e) {
 			e.printStackTrace();
