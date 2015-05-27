@@ -87,6 +87,7 @@ public class ArrayElement extends BaseGroupElement {
 		get(index).setValue(value);
 	}
 
+	@SuppressWarnings("unchecked")
 	public final ArrayElement getClone() {
 		ArrayElement baseField = (ArrayElement) super.getClone();
 		baseField.value = (ArrayList<BaseElement>) this.value.clone();

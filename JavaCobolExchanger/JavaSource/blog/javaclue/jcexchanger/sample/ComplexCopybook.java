@@ -55,19 +55,6 @@ public class ComplexCopybook extends ExchangeRecord {
 		list.add(array);
 		list.add(new StringElement("filler", 3));
 	}
-
-	public static void main(String[] args) {
-		ComplexCopybook test = new ComplexCopybook();
-		try {
-			test.javaToCobol();
-			System.out.println();
-			test.cobolToJava();
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-		}
-		System.exit(0);
-	}
 	
 	/*
 	 * starts from java exchange record and export it to COBOL string
@@ -117,5 +104,18 @@ public class ComplexCopybook extends ExchangeRecord {
 		System.out.println("Size  : " + bean.size());
 		System.out.println("Length: " + bean.length());
 		System.out.println("bean2 - [" + bean.exportToString() + "]");
+	}
+
+	public static void main(String[] args) {
+		ComplexCopybook test = new ComplexCopybook();
+		try {
+			test.javaToCobol();
+			System.out.println();
+			test.cobolToJava();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.exit(0);
 	}
 }

@@ -76,6 +76,7 @@ public class StructElement extends BaseGroupElement {
 		return (BaseElement) element;
 	}
 
+	@SuppressWarnings("unchecked")
 	public final StructElement getClone() {
 		StructElement baseField = (StructElement) super.getClone();
 		baseField.nameMap = (LinkedHashMap<String, BaseElement>) this.nameMap.clone();

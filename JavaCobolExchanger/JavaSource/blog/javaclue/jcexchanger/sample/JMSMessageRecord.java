@@ -69,17 +69,6 @@ public class JMSMessageRecord extends ExchangeRecord {
 			list.add(new DateTimeElement("dateTime", "yyyyMMdd HH:mm:ss.SSS"));
 		}
 	}
-	
-	public static void main(String[] args) {
-		try {
-			javaToCobol();
-			System.out.println(LF);
-			cobolToJava();
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 
 	/*
 	 * starts from java exchange record and export it to COBOL string
@@ -128,5 +117,16 @@ public class JMSMessageRecord extends ExchangeRecord {
 		System.out.println("Size  : " + bean.size());
 		System.out.println("Length: " + bean.length());
 		System.out.println("bean2 - [" + bean.exportToString() + "]");
+	}
+	
+	public static void main(String[] args) {
+		try {
+			javaToCobol();
+			System.out.println(LF);
+			cobolToJava();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

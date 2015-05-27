@@ -16,30 +16,18 @@
  */
 package blog.javaclue.jcexchanger.test;
 
-import junit.framework.TestSuite;
+import org.junit.runner.RunWith;
+import org.junit.runners.Suite;
 
-public class Test_Suite extends TestSuite {
-	
-	public Test_Suite(String arg0) {
-		super(arg0);
-	}
-
-	public static void main(String[] args) {
-		junit.textui.TestRunner.run(suite());
-	}
-	
-	static TestSuite suite() {
-		Class<?>[] testClasses = { 
-				ArrayElementTest.class, 
+@RunWith(Suite.class)
+@Suite.SuiteClasses({ArrayElementTest.class, 
 				BooleanElementTest.class,
 				CobolDecimalElementTest.class,
 				DateTimeElementTest.class,
 				DecimalElementTest.class,
 				IntegerElementTest.class,
 				StringElementTest.class,
-				StructElementTest.class };
-
-		return new TestSuite(testClasses);
-	}
-	
+				StructElementTest.class})
+public class Test_Suite {
+	// empty body
 }
