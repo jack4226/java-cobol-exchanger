@@ -16,26 +16,20 @@
  */
 package blog.javaclue.jcexchanger.test;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+
 import java.util.Arrays;
+
+import org.junit.Test;
 
 import blog.javaclue.jcexchanger.AppProperties;
 import blog.javaclue.jcexchanger.StringElement;
-import junit.framework.TestCase;
 
-public class StringElementTest extends TestCase {
+public class StringElementTest {
 
-	public StringElementTest(String name) {
-		super(name);
-	}
-
-	protected void setUp() throws Exception {
-		super.setUp();
-	}
-
-	protected void tearDown() throws Exception {
-		super.tearDown();
-	}
-
+	@Test
 	public void testStringElement() {
 		int strLen = 22;
 		String strName = "string";

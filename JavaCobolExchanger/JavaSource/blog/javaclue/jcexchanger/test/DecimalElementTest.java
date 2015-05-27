@@ -16,23 +16,15 @@
  */
 package blog.javaclue.jcexchanger.test;
 
+import static org.junit.Assert.assertEquals;
+
 import java.math.BigDecimal;
 
 import org.junit.Test;
 
 import blog.javaclue.jcexchanger.DecimalElement;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
-public class DecimalElementTest extends TestCase {
-
-	public static void main(String... args) {
-		junit.textui.TestRunner.run(suite());
-	}
-
-	public static junit.framework.Test suite() {
-		return new TestSuite(DecimalElementTest.class);
-	}
+public class DecimalElementTest {
 
 	@Test
 	public void testDecimalElement() {
@@ -69,8 +61,20 @@ public class DecimalElementTest extends TestCase {
 		assertEquals("-00001234.5670", elem.getFormattedString());
 	}
 
-//	@Test (expected=IllegalArgumentException.class)
-//	public void testException() {
-//		DecimalElement elem = new DecimalElement("signed-decimal", "+00000000.000;-00000000.0000");
-//	}
+	@Test (expected=NumberFormatException.class)
+	public void testException1() {
+		DecimalElement elem = new DecimalElement("decimal", "000000000000.000");
+		elem.setValue("abc123.45");
+	}
+	
+	@Test (expected=IllegalArgumentException.class)
+	public void testException2() {
+		try {
+			new DecimalElement("signed-decimal", "+00000000.0;-00000000.0000");
+		}
+		catch (IllegalArgumentException e) {
+			assertEquals("The length of positive pattern must equal to the length of negative pattern", e.getMessage());
+			throw e;
+		}
+	}
 }

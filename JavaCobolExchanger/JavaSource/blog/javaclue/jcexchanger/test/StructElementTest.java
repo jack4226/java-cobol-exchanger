@@ -16,11 +16,13 @@
  */
 package blog.javaclue.jcexchanger.test;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
+
 import java.math.BigDecimal;
 
 import org.junit.Test;
 
-import junit.framework.TestCase;
 import blog.javaclue.jcexchanger.ArrayElement;
 import blog.javaclue.jcexchanger.BaseElement;
 import blog.javaclue.jcexchanger.BooleanElement;
@@ -30,7 +32,7 @@ import blog.javaclue.jcexchanger.IntegerElement;
 import blog.javaclue.jcexchanger.StringElement;
 import blog.javaclue.jcexchanger.StructElement;
 
-public class StructElementTest extends TestCase {
+public class StructElementTest {
 
 	@Test
 	public void testStructElement() {
@@ -76,5 +78,44 @@ public class StructElementTest extends TestCase {
 		assertEquals(cloneString, clone.getValue());
 		// make sure no side effect to the original
 		assertEquals(fmttdString, elem.getValue());
+	}
+	
+	@Test
+	public void testExceptions() {
+		try {
+			new StructElement("test", null);
+			fail();
+		}
+		catch (IllegalArgumentException e) {
+			assertEquals("\"elements\" can not be null.", e.getMessage());
+		}
+		
+		BaseElement[] elems1 = {
+				new StringElement("string", 6),
+				new IntegerElement("int1", 4, true)
+		};
+		StructElement elem = new StructElement("struct", elems1);
+		try {
+			elem.getElement("string");
+			elem.getElement("notfound");
+			fail();
+		}
+		catch (IllegalArgumentException e) {
+			//System.out.println(e.getMessage());
+		}
+		
+		BaseElement[] elems2 = {
+				new StringElement("string", 6),
+				null // to trigger exception
+		};
+		try {
+			new StructElement("struct", elems2);
+			fail();
+		}
+		catch (IllegalArgumentException e) {
+			assertEquals("Input element can not be null.", e.getMessage());
+			//System.out.println(e.getMessage());
+		}
+		
 	}
 }

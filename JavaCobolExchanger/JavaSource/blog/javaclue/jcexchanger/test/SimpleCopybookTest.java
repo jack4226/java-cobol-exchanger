@@ -16,13 +16,13 @@
  */
 package blog.javaclue.jcexchanger.test;
 
-import junit.framework.TestCase;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
 import blog.javaclue.jcexchanger.sample.SimpleCopybook;
 
-public class SimpleCopybookTest extends TestCase {
+public class SimpleCopybookTest {
 
 	String record = "ADDYUSA00012300199.992010-01-0120100405 20:45:12.234   ";
 	

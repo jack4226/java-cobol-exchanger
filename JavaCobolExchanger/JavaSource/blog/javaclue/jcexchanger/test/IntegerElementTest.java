@@ -16,12 +16,13 @@
  */
 package blog.javaclue.jcexchanger.test;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
 
 import blog.javaclue.jcexchanger.IntegerElement;
-import junit.framework.TestCase;
 
-public class IntegerElementTest extends TestCase {
+public class IntegerElementTest {
 
 	@Test
 	public void testIntegerElement() {
@@ -49,9 +50,15 @@ public class IntegerElementTest extends TestCase {
 		assertEquals("+0002345678", elem.getFormattedString());
 	}
 	
-//	@Test(expected=java.lang.NumberFormatException.class)
-//	public void testException() {
-//		IntegerElement elem = new IntegerElement("integer", 8);
-//		elem.setValue("abc");
-//	}
+	@Test(expected=java.lang.NumberFormatException.class)
+	public void testException1() {
+		IntegerElement elem = new IntegerElement("integer", 8);
+		elem.setValue("abc");
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testException2() {
+		new IntegerElement("integer", -8);
+	}
+
 }

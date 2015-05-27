@@ -16,6 +16,8 @@
  */
 package blog.javaclue.jcexchanger;
 
+import org.apache.commons.lang.StringUtils;
+
 public class BooleanElement extends BaseElement {
 	private static final long serialVersionUID = -3556002501200171348L;
 
@@ -50,8 +52,11 @@ public class BooleanElement extends BaseElement {
 		if (trueValue == null || falseValue == null) {
 			throw new IllegalArgumentException("Neither trueValue nor falseValue can be null.");
 		}
-		this.trueValue = (trueValue + getBlanks(length)).substring(0, length);
-		this.falseValue = (falseValue + getBlanks(length)).substring(0, length);
+		else if (StringUtils.equals(trueValue, falseValue)) {
+			throw new IllegalArgumentException("trueValue and falseValue can not be same.");
+		}
+		this.trueValue = StringUtils.rightPad(trueValue, length, ' ');
+		this.falseValue = StringUtils.rightPad(falseValue, length, ' ');
 	}
 
 	private static int getFieldLength(String trueValue, String falseValue) {

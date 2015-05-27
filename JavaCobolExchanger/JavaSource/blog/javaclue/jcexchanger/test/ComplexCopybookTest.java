@@ -16,7 +16,7 @@
  */
 package blog.javaclue.jcexchanger.test;
 
-import junit.framework.TestCase;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
@@ -24,7 +24,7 @@ import blog.javaclue.jcexchanger.ArrayElement;
 import blog.javaclue.jcexchanger.StructElement;
 import blog.javaclue.jcexchanger.sample.ComplexCopybook;
 
-public class ComplexCopybookTest extends TestCase {
+public class ComplexCopybookTest {
 
 	String record = "ADDYUSA00012300199.992010-01-0120100405 20:45:12.234-099912345678901234567890-01234.567801234578Yes111 222 333 444 555    ";
 	

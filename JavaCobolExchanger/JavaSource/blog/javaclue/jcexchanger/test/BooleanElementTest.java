@@ -16,12 +16,16 @@
  */
 package blog.javaclue.jcexchanger.test;
 
+import static org.junit.Assert.assertEquals;
+
+import org.junit.Test;
+
 import blog.javaclue.jcexchanger.BooleanElement;
-import junit.framework.TestCase;
 
-public class BooleanElementTest extends TestCase {
+public class BooleanElementTest {
 
-	public void testBooleanElement() {
+	@Test
+	public void testBooleanElement1() {
 		BooleanElement elem = new BooleanElement("boolean");
 		elem.setValue("Y");
 		assertEquals(Boolean.valueOf(true), elem.getValue());
@@ -39,6 +43,7 @@ public class BooleanElementTest extends TestCase {
 		assertEquals(Boolean.valueOf(true), elem.getValue());
 	}
 
+	@Test
 	public void testBooleanElement2() {
 		BooleanElement elem = new BooleanElement("boolean", "True", "False");
 		elem.setValue("True");
@@ -47,4 +52,15 @@ public class BooleanElementTest extends TestCase {
 		assertEquals(5, elem.length());
 		assertEquals("True ", elem.getFormattedString());
 	}
+	
+	@Test (expected=IllegalArgumentException.class)
+	public void testException1() {
+		new BooleanElement("boolean", "True", null);
+	}
+	
+	@Test (expected=IllegalArgumentException.class)
+	public void testException2() {
+		new BooleanElement("boolean", "True", "True");
+	}
+
 }

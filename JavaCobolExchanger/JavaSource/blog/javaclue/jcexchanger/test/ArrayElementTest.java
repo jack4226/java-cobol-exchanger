@@ -16,12 +16,13 @@
  */
 package blog.javaclue.jcexchanger.test;
 
+import static org.junit.Assert.assertEquals;
+
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 
 import org.junit.Test;
 
-import junit.framework.TestCase;
 import blog.javaclue.jcexchanger.ArrayElement;
 import blog.javaclue.jcexchanger.BaseElement;
 import blog.javaclue.jcexchanger.BooleanElement;
@@ -31,7 +32,7 @@ import blog.javaclue.jcexchanger.IntegerElement;
 import blog.javaclue.jcexchanger.StringElement;
 import blog.javaclue.jcexchanger.StructElement;
 
-public class ArrayElementTest extends TestCase {
+public class ArrayElementTest {
 
 	@Test
 	public void testArrayElement() {
@@ -84,5 +85,17 @@ public class ArrayElementTest extends TestCase {
 		assertEquals(cs1, clone.getValue());
 		// make sure no side effect to the original
 		assertEquals(fm1, ((StructElement)elem.get(0)).getFormattedString());
+	}
+	
+	@Test (expected=IllegalArgumentException.class)
+	public void testException1() {
+		new ArrayElement("array", null, 4);
+	}
+	
+	@Test (expected=IndexOutOfBoundsException.class)
+	public void testException2() {
+		ArrayElement elem = new ArrayElement("array", new StringElement("string", 8), 4);
+		elem.get(0);
+		elem.get(elem.size()); // triggers error
 	}
 }

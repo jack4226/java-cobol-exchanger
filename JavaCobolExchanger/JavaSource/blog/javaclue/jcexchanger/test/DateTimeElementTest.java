@@ -16,12 +16,15 @@
  */
 package blog.javaclue.jcexchanger.test;
 
+import static org.junit.Assert.assertEquals;
+
 import java.text.SimpleDateFormat;
-import junit.framework.TestCase;
+
 import org.junit.Test;
+
 import blog.javaclue.jcexchanger.DateTimeElement;
 
-public class DateTimeElementTest extends TestCase {
+public class DateTimeElementTest {
 
 	@Test
 	public void testDateTimeElement() {
@@ -43,9 +46,19 @@ public class DateTimeElementTest extends TestCase {
 		assertEquals("2010-09-11", sdf.format(elem.getValue()));
 	}
 
-//	@Test(expected=java.lang.NumberFormatException.class)
-//	public void testException() {
-//		DateTimeElement elem = new DateTimeElement("datetime", "yyyy-MM-dd");
-//		elem.setValue("2010-11-aa");
-//	}
+	@Test(expected=java.lang.NumberFormatException.class)
+	public void testException1() {
+		DateTimeElement elem = new DateTimeElement("datetime", "yyyy-MM-dd");
+		elem.setValue("2010-11-aa");
+	}
+	
+	@Test (expected=IllegalArgumentException.class)
+	public void testException2() {
+		 new DateTimeElement("datetime", null);
+	}
+
+	@Test (expected=IllegalArgumentException.class)
+	public void testException3() {
+		 new DateTimeElement("datetime", "yyyy-MM-dd b");
+	}
 }

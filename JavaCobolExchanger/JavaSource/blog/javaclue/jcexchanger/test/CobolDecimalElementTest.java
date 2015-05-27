@@ -16,23 +16,15 @@
  */
 package blog.javaclue.jcexchanger.test;
 
+import static org.junit.Assert.assertEquals;
+
 import java.math.BigDecimal;
 
 import org.junit.Test;
 
 import blog.javaclue.jcexchanger.CobolDecimalElement;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
-public class CobolDecimalElementTest extends TestCase {
-
-	public static void main(String... args) {
-		junit.textui.TestRunner.run(suite());
-	}
-
-	public static junit.framework.Test suite() {
-		return new TestSuite(CobolDecimalElementTest.class);
-	}
+public class CobolDecimalElementTest {
 
 	@Test
 	public void testCobolDecimalElement() {
@@ -64,5 +56,16 @@ public class CobolDecimalElementTest extends TestCase {
 		assertEquals("signed-decimal", elem.getName());
 		assertEquals(11, elem.length());
 		assertEquals("-0001234560", elem.getFormattedString());
+	}
+	
+	@Test (expected=NumberFormatException.class)
+	public void testException1() {
+		CobolDecimalElement elem = new CobolDecimalElement("decimal", 8, 2);
+		elem.setValue("not a number");
+	}
+	
+	@Test (expected=IllegalArgumentException.class)
+	public void testException2() {
+		new CobolDecimalElement("decimal", 8, -1);
 	}
 }
