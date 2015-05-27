@@ -51,8 +51,7 @@ public class DateTimeElement extends BaseElement {
 			dateFormatter.setTimeZone(TimeZone.getDefault());
 		} 
 		catch (IllegalArgumentException e) {
-			logger.error("Invalid format \"" + format + "\" received by element - " + getName());
-			throw e;
+			throw new IllegalArgumentException("Invalid format \"" + format + "\" received by element - " + getName(), e);
 		}
 	}
 
