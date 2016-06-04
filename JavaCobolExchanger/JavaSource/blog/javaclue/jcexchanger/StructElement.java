@@ -26,8 +26,7 @@ import java.util.LinkedHashMap;
  * accessible by name or Iterator.
  */
 public class StructElement extends BaseGroupElement {
-	private static final long serialVersionUID = -2490620855470379941L;
-
+	private static final long serialVersionUID = -8465489623904588660L;
 	private LinkedHashMap<String, BaseElement> nameMap;
 	private Collection<BaseElement> value; 
 
