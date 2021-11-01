@@ -43,7 +43,7 @@ public class HashList {
 	 */
 	public synchronized void add(BaseElement element) {
 		list.add(element);
-		map.put(element.getName(), new Integer(list.size()));
+		map.put(element.getName(), Integer.valueOf(list.size()));
 	}
 	
 	/**

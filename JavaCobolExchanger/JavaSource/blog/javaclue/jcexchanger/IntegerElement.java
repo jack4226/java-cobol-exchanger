@@ -96,7 +96,7 @@ public class IntegerElement extends BaseElement {
 						logger.warn("Input " + tmpValue + " is longer than element size: " + length
 								+ ", return from getFormattedString() will be truncated.");
 					}
-					value = new Integer(tmpValue);
+					value = Integer.valueOf(tmpValue);
 				}
 				else {
 					value = null;
