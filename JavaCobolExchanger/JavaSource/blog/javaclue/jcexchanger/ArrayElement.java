@@ -109,6 +109,7 @@ public class ArrayElement extends BaseGroupElement {
 			System.out.println("Array: " + array.getClone());
 			System.out.println("Array: " + array.getFormattedString());
 			System.out.println(array.get(2).getName() + ": " + array.get(2));
+			logger.info(array.get(2).getName() + ": " + array.get(2));
 		}
 		catch (Exception e) {
 			e.printStackTrace();

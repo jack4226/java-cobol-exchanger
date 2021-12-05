@@ -20,11 +20,12 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.text.DecimalFormat;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public abstract class BaseElement implements java.io.Serializable, Cloneable {
 	private static final long serialVersionUID = -1342264858006898139L;
-	protected static Logger logger = Logger.getLogger(BaseElement.class);
+	protected static Logger logger = LogManager.getLogger(BaseElement.class);
 	protected static boolean isDebugEnabled = logger.isDebugEnabled();
 
 	protected static final String LF = System.getProperty("line.separator", "\n");

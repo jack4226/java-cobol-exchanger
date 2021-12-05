@@ -21,11 +21,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class DateTimeElement extends BaseElement {
 	private static final long serialVersionUID = -8766990505632056923L;
-	protected static Logger logger = Logger.getLogger(DateTimeElement.class);
+	protected static Logger logger = LogManager.getLogger(DateTimeElement.class);
 	protected static boolean isDebugEnabled = logger.isDebugEnabled();
 
 	private Date value = null;

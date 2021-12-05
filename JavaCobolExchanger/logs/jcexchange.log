@@ -1,45 +1,4 @@
-[2010-09-16.103332.576] WARN  blog.javaclue.jcexchanger.BaseField  : Input value "####@@@@" is longer than the field size 4, return from getFormattedString() will be truncated.
-[2010-09-16.103332.591] WARN  blog.javaclue.jcexchanger.BaseField  : Input -2009 is longer than field size: 4, getFormattedString() will be truncated.
-[2010-09-16.103332.591] WARN  blog.javaclue.jcexchanger.BaseField  : Input -2008 is longer than field size: 4, getFormattedString() will be truncated.
-[2010-09-16.103332.591] WARN  blog.javaclue.jcexchanger.BaseField  : Input -2007 is longer than field size: 4, getFormattedString() will be truncated.
-[2010-09-16.103332.591] WARN  blog.javaclue.jcexchanger.BaseField  : Input -2006 is longer than field size: 4, getFormattedString() will be truncated.
-[2010-09-16.103332.591] WARN  blog.javaclue.jcexchanger.BaseField  : Input -2005 is longer than field size: 4, getFormattedString() will be truncated.
-[2010-09-16.103341.310] WARN  blog.javaclue.jcexchanger.BaseField  : Input value "####@@@@" is longer than the field size 4, return from getFormattedString() will be truncated.
-[2010-09-16.103341.326] WARN  blog.javaclue.jcexchanger.BaseField  : Input -2009 is longer than field size: 4, getFormattedString() will be truncated.
-[2010-09-16.103341.326] WARN  blog.javaclue.jcexchanger.BaseField  : Input -2008 is longer than field size: 4, getFormattedString() will be truncated.
-[2010-09-16.103341.326] WARN  blog.javaclue.jcexchanger.BaseField  : Input -2007 is longer than field size: 4, getFormattedString() will be truncated.
-[2010-09-16.103341.326] WARN  blog.javaclue.jcexchanger.BaseField  : Input -2006 is longer than field size: 4, getFormattedString() will be truncated.
-[2010-09-16.103341.326] WARN  blog.javaclue.jcexchanger.BaseField  : Input -2005 is longer than field size: 4, getFormattedString() will be truncated.
-[2010-09-16.104056.028] WARN  blog.javaclue.jcexchanger.BaseField  : Input value "####@@@@" is longer than the field size 4, return from getFormattedString() will be truncated.
-[2010-09-16.104056.028] WARN  blog.javaclue.jcexchanger.BaseField  : Input -2009 is longer than field size: 4, getFormattedString() will be truncated.
-[2010-09-16.104056.028] WARN  blog.javaclue.jcexchanger.BaseField  : Input -2008 is longer than field size: 4, getFormattedString() will be truncated.
-[2010-09-16.104056.028] WARN  blog.javaclue.jcexchanger.BaseField  : Input -2007 is longer than field size: 4, getFormattedString() will be truncated.
-[2010-09-16.104056.028] WARN  blog.javaclue.jcexchanger.BaseField  : Input -2006 is longer than field size: 4, getFormattedString() will be truncated.
-[2010-09-16.104056.028] WARN  blog.javaclue.jcexchanger.BaseField  : Input -2005 is longer than field size: 4, getFormattedString() will be truncated.
-[2010-09-16.140911.749] WARN  blog.javaclue.jcexchanger.BaseElement  : Input value "####@@@@" is longer than the field size 4, return from getFormattedString() will be truncated.
-[2010-09-16.143238.468] WARN  blog.javaclue.jcexchanger.BaseElement  : Input value "####@@@@" is longer than the element size 4, return from getFormattedString() will be truncated.
-[2010-09-16.143306.359] WARN  blog.javaclue.jcexchanger.BaseElement  : Input value "####@@@@" is longer than the element size 4, return from getFormattedString() will be truncated.
-[2010-09-16.144039.818] WARN  blog.javaclue.jcexchanger.BaseElement  : Input value "####@@@@" is longer than the element size 4, return from getFormattedString() will be truncated.
-[2010-09-16.144058.975] WARN  blog.javaclue.jcexchanger.BaseElement  : Input value "####@@@@" is longer than the element size 4, return from getFormattedString() will be truncated.
-[2010-09-16.144108.506] WARN  blog.javaclue.jcexchanger.BaseElement  : Input value "####@@@@" is longer than the element size 4, return from getFormattedString() will be truncated.
-[2010-09-16.144204.554] WARN  blog.javaclue.jcexchanger.BaseElement  : Input value "####@@@@" is longer than the element size 4, return from getFormattedString() will be truncated.
-[2010-09-16.144235.585] WARN  blog.javaclue.jcexchanger.BaseElement  : Input value "####@@@@" is longer than the element size 4, return from getFormattedString() will be truncated.
-[2010-09-16.144257.758] WARN  blog.javaclue.jcexchanger.BaseElement  : Input value "####@@@@" is longer than the element size 4, return from getFormattedString() will be truncated.
-[2010-09-16.144308.039] WARN  blog.javaclue.jcexchanger.BaseElement  : Input value "####@@@@" is longer than the element size 4, return from getFormattedString() will be truncated.
-[2010-09-16.144548.650] WARN  blog.javaclue.jcexchanger.BaseElement  : Input value "####@@@@" is longer than the element size 4, return from getFormattedString() will be truncated.
-[2010-09-16.151727.222] WARN  blog.javaclue.jcexchanger.BaseElement  : Input value "####@@@@" is longer than the element size 4, return from getFormattedString() will be truncated.
-[2010-09-16.153700.973] WARN  blog.javaclue.jcexchanger.BaseElement  : Input value "####@@@@" is longer than the element size 4, return from getFormattedString() will be truncated.
-[2010-09-16.162109.316] WARN  blog.javaclue.jcexchanger.BaseElement  : Input value "####@@@@" is longer than the element size 4, return from getFormattedString() will be truncated.
-[2010-09-16.162350.615] WARN  blog.javaclue.jcexchanger.BaseElement  : Input value "####@@@@" is longer than the element size 4, return from getFormattedString() will be truncated.
-[2010-09-16.162430.288] WARN  blog.javaclue.jcexchanger.BaseElement  : Input value "####@@@@" is longer than the element size 4, return from getFormattedString() will be truncated.
-[2010-09-16.162631.352] WARN  blog.javaclue.jcexchanger.BaseElement  : Input value "####@@@@" is longer than the element size 4, return from getFormattedString() will be truncated.
-[2010-09-16.162824.994] WARN  blog.javaclue.jcexchanger.BaseElement  : Input "####@@@@" exceeds the element size of 4, return from getFormattedString() will be truncated.
-[2010-09-16.163506.120] WARN  blog.javaclue.jcexchanger.BaseElement  : Input "####@@@@" exceeds the element size of 4, return from getFormattedString() will be truncated.
-[2010-09-16.163717.129] WARN  blog.javaclue.jcexchanger.BaseElement  : Input "####@@@@" exceeds the element size of 4, return from getFormattedString() will be truncated.
-[2010-09-16.163942.048] WARN  blog.javaclue.jcexchanger.BaseElement  : Input "####@@@@" exceeds the element size of 4, return from getFormattedString() will be truncated.
-[2010-09-16.171031.109] WARN  blog.javaclue.jcexchanger.BaseElement  : Input "####@@@@" exceeds the element size of 4, return from getFormattedString() will be truncated.
-[2010-09-16.172706.388] WARN  blog.javaclue.jcexchanger.BaseElement  : Input "####@@@@" exceeds the element size of 4, return from getFormattedString() will be truncated.
-[2010-09-17.111208.841] WARN  blog.javaclue.jcexchanger.BaseElement  : Input 567.12345 is longer than element size: 8, return from getFormattedString() will be truncated.
-[2010-09-17.114450.800] WARN  blog.javaclue.jcexchanger.BaseElement  : Input "####@@@@" exceeds the element size of 4, return from getFormattedString() will be truncated.
-[2010-09-17.115225.159] WARN  blog.javaclue.jcexchanger.BaseElement  : Input "####@@@@" exceeds the element size of 4, return from getFormattedString() will be truncated.
-[2010-09-20.130216.613] WARN  blog.javaclue.jcexchanger.BaseElement  : Input "####@@@@" exceeds the element size of 4, return from getFormattedString() will be truncated.
+[2021-12-04.215800.002] WARN  blog.javaclue.jcexchanger.BaseElement [] : Input "####@@@@" exceeds the element size of 4, return from getFormattedString() will be truncated.
+[2021-12-04.215800.006] INFO  blog.javaclue.jcexchanger.BaseElement [] : item_2: 3333
+[2021-12-04.215830.272] WARN  blog.javaclue.jcexchanger.BaseElement [] : Input "####@@@@" exceeds the element size of 4, return from getFormattedString() will be truncated.
+[2021-12-04.215830.276] INFO  blog.javaclue.jcexchanger.BaseElement [] : item_2: 3333
